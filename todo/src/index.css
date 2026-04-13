@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+body{
+  background-color: black;
+  transition: all 2s ease-in-out;
+}
