@@ -6,11 +6,17 @@ const App = () => {
 
       const [title, setTitle] = useState('')
       const [details, setDetails] = useState('')
-      const [task, allTask] = useState([])
+
+      let localdata = JSON.parse(localStorage.getItem('all-task')) || []
+
+      const [task, allTask] = useState(localdata)
 
       const submitHandler = (e) =>{
         e.preventDefault();
-        allTask([...task, {title, details}]);
+        let oldTask = [...task]
+        oldTask.push({title, details})
+        allTask(oldTask);
+        localStorage.setItem('all-task', JSON.stringify(oldTask))
         setTitle('')
         setDetails('')
       }
@@ -19,6 +25,7 @@ const App = () => {
         let data = [...task]
         data.splice(index, 1)
         allTask(data)
+        localStorage.setItem('all-task', JSON.stringify(data))
       }
 
         return (
@@ -55,7 +62,7 @@ const App = () => {
                 required
                 className="outline-2 outline-white rounded-2xl p-4 text-white"></textarea>
 
-                <button className="bg-green-600 p-5 rounded-2xl text-2xl font-bold text-white active:scale-95">Add Task</button>
+                <button className="bg-green-600 p-5 rounded-2xl text-xl font-bold text-white active:scale-95 transition-all">Add Task</button>
 
             </form>
 
@@ -63,17 +70,17 @@ const App = () => {
 
           <div className="bg-[#333] rounded-2xl w-2/3 p-5">
 
-          <h1 className="text-center text-3xl font-bold text-white">All Task</h1>
+          <h1 className="text-center text-2xl font-bold text-white">All Task</h1>
 
           <div className="p-4 flex flex-col gap-5">
 
           {task.map(function(elem, index){
           return  <details key={index}>
-                  <summary className="text-white text-2xl">{elem.title}</summary>
-                  <p className="text-white text-xl">{elem.details}</p>
+                  <summary className="text-white text-xl">{elem.title}</summary>
+                  <p className="text-white text-md">{elem.details}</p>
                   <button 
                   onClick={() => {deleteHandler(index)}}
-                  className="bg-red-600 text-white p-2 font-bold rounded mt-2">
+                  className="bg-red-600 text-white p-2 font-bold rounded mt-2 active:scale-95 transition-all">
                     Task Completed
                   </button>
                   </details>
