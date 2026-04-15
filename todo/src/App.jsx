@@ -23,7 +23,13 @@ const App = () => {
 
       const deleteHandler = (index) => {
         let data = [...task]
-        data.splice(index, 1)
+        let con = confirm('Really want to delete it ?')
+        if(con){
+          data.splice(index, 1)
+        }
+        else{
+          alert('Task is saved')
+        }
         allTask(data)
         localStorage.setItem('all-task', JSON.stringify(data))
       }
