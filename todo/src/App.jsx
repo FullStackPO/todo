@@ -74,7 +74,7 @@ const App = () => {
 
           </div>
 
-          <div className="bg-[#333] rounded-2xl w-2/3 p-5">
+          <div className="bg-[#333] rounded-2xl w-2/3 p-5 h-[85vh] overflow-auto custom-scroll">
 
           <h1 className="text-center text-2xl font-bold text-white">All Task</h1>
 

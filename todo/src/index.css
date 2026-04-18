@@ -7,3 +7,15 @@ html,body{
 body{
   background-color: black;
 }
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #888, #555);
+  border-radius: 20px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
